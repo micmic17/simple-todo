@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,9 @@
 		24B3BE30268ECC8E0007ABFF /* simple_todoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE2F268ECC8E0007ABFF /* simple_todoTests.swift */; };
 		24B3BE3B268ECC8E0007ABFF /* simple_todoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE3A268ECC8E0007ABFF /* simple_todoUITests.swift */; };
 		24B3BE49268ECE030007ABFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24B3BE48268ECE030007ABFF /* GoogleService-Info.plist */; };
+		24B3BE4E2693EEF00007ABFF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE4D2693EEF00007ABFF /* LoginViewController.swift */; };
+		24B3BE552693F3AE0007ABFF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE542693F3AE0007ABFF /* LoginViewModel.swift */; };
+		24B3BE5B2693F8A00007ABFF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE5A2693F8A00007ABFF /* LoginModel.swift */; };
 		61F890288CD0751B76E81367 /* Pods_simple_todoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C592B740D1C2A67333D8A2 /* Pods_simple_todoTests.framework */; };
 		7E88D98258325F6B8541D4A2 /* Pods_simple_todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDA7CB4E88B53FE000BF126 /* Pods_simple_todo.framework */; };
 		CAB28EAD5CA91BB6682731AE /* Pods_simple_todo_simple_todoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7512E7D48C223B0F8505B474 /* Pods_simple_todo_simple_todoUITests.framework */; };
@@ -54,6 +57,9 @@
 		24B3BE3A268ECC8E0007ABFF /* simple_todoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simple_todoUITests.swift; sourceTree = "<group>"; };
 		24B3BE3C268ECC8E0007ABFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24B3BE48268ECE030007ABFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		24B3BE4D2693EEF00007ABFF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		24B3BE542693F3AE0007ABFF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		24B3BE5A2693F8A00007ABFF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		27576A6DAFE5B680E1FFE003 /* Pods-simple-todo-simple-todoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-todo-simple-todoUITests.release.xcconfig"; path = "Target Support Files/Pods-simple-todo-simple-todoUITests/Pods-simple-todo-simple-todoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		418785AE63271B6FDB7552AA /* Pods-simple-todoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-todoTests.debug.xcconfig"; path = "Target Support Files/Pods-simple-todoTests/Pods-simple-todoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6EDA7CB4E88B53FE000BF126 /* Pods_simple_todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simple_todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +124,9 @@
 		24B3BE17268ECC8C0007ABFF /* simple-todo */ = {
 			isa = PBXGroup;
 			children = (
+				24B3BE512693F0740007ABFF /* ViewModels */,
+				24B3BE4C2693EEDB0007ABFF /* Models */,
+				24B3BE4B2693EED60007ABFF /* Views */,
 				24B3BE18268ECC8C0007ABFF /* AppDelegate.swift */,
 				24B3BE1A268ECC8C0007ABFF /* SceneDelegate.swift */,
 				24B3BE1C268ECC8C0007ABFF /* ViewController.swift */,
@@ -148,6 +157,30 @@
 			path = "simple-todoUITests";
 			sourceTree = "<group>";
 		};
+		24B3BE4B2693EED60007ABFF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE4D2693EEF00007ABFF /* LoginViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		24B3BE4C2693EEDB0007ABFF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE5A2693F8A00007ABFF /* LoginModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		24B3BE512693F0740007ABFF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE542693F3AE0007ABFF /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		9CD1ADE2618621EBC66A81AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +201,6 @@
 				418785AE63271B6FDB7552AA /* Pods-simple-todoTests.debug.xcconfig */,
 				D07951332519E1E49A4B03A8 /* Pods-simple-todoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -411,6 +443,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B3BE4E2693EEF00007ABFF /* LoginViewController.swift in Sources */,
+				24B3BE5B2693F8A00007ABFF /* LoginModel.swift in Sources */,
+				24B3BE552693F3AE0007ABFF /* LoginViewModel.swift in Sources */,
 				24B3BE1D268ECC8C0007ABFF /* ViewController.swift in Sources */,
 				24B3BE19268ECC8C0007ABFF /* AppDelegate.swift in Sources */,
 				24B3BE1B268ECC8C0007ABFF /* SceneDelegate.swift in Sources */,
