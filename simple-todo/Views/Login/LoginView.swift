@@ -71,10 +71,7 @@ class LoginView: UIView {
     let emailTextField: UITextField = {
         let textfield = UITextField(frame: CGRect(x: 10, y: 320, width: 300, height: 30))
         textfield.placeholder = "Email"
-        textfield.borderStyle = UITextField.BorderStyle.roundedRect
-        textfield.textColor = UIColor.black
-        textfield.autocapitalizationType = .none
-        textfield.autocorrectionType = .no
+        textfield.defaultTextField(textfield)
 
         return textfield
     }()
@@ -93,10 +90,7 @@ class LoginView: UIView {
         let textfield = UITextField(frame: CGRect(x: 10, y: 320, width: 300, height: 30))
         textfield.placeholder = "Password"
         textfield.isSecureTextEntry = true
-        textfield.borderStyle = UITextField.BorderStyle.roundedRect
-        textfield.textColor = UIColor.black
-        textfield.autocapitalizationType = .none
-        textfield.autocorrectionType = .no
+        textfield.defaultTextField(textfield)
 
         return textfield
     }()
@@ -117,4 +111,13 @@ class LoginView: UIView {
         stackView.alignment = .leading
         return stackView
     }()
+}
+
+extension UITextField {
+    func defaultTextField(_ textfield: UITextField) {
+        textfield.autocapitalizationType = .none
+        textfield.autocorrectionType = .no
+        textfield.borderStyle = UITextField.BorderStyle.roundedRect
+        textfield.textColor = UIColor.black
+    }
 }

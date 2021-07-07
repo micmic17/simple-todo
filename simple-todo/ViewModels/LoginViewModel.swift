@@ -21,6 +21,7 @@ class LoginViewModel {
 
     var isSuccess = BehaviorRelay<Bool>(value: false)
     var isLoading = BehaviorRelay<Bool>(value: false)
+    var isAuthenticated = BehaviorRelay<Bool>(value: false)
     var errorMessage = BehaviorRelay<String>(value: "")
     
     func isValidCredentials() -> Bool {
@@ -38,16 +39,40 @@ class LoginViewModel {
                 onNext: { response in
                     self.isLoading.accept(false)
                     self.isSuccess.accept(true)
-                    
-                    let loginVC = UIApplication.shared.keyWindow?.rootViewController
-                    let homeVC = UINavigationController(rootViewController: HomeViewController())
-                    
-                    self.redirectTo(homeVC, loginVC!)
+                    self.isAuthenticated.accept(true)
+                    self.redirectTo(HomeViewController(), (UIApplication.shared.keyWindow?.rootViewController)!)
                 },onError: { error in
                     self.isLoading.accept(false)
                     self.errorMessage.accept(error.localizedDescription)
                 }
             ).disposed(by: disposeBag)
+    }
+    
+    func logoutUser() {
+        model.email = ""
+        model.password = ""
+        
+        isLoading.accept(true)
+        
+        do {
+            try auth.signOut()
+            
+            DispatchQueue.main.async {
+                self.isLoading.accept(false)
+                self.isSuccess.accept(true)
+                self.isAuthenticated.accept(false)
+                let root = (UIApplication.shared.keyWindow?.rootViewController)!
+
+                DispatchQueue.main.async { [weak self] in
+                    if self!.isSuccess.value {
+                        root.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
+        } catch let signOutError as NSError {
+            self.isLoading.accept(false)
+            self.errorMessage.accept(signOutError.localizedDescription)
+        }
     }
     
     // Create observer so can disposed firebase auth result

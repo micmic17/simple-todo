@@ -26,8 +26,10 @@ class HomeView: UIView {
     private func setUpViews() {
         self.addSubview(backgroundView)
         self.addSubview(mainStack)
-        
-        mainStack.addArrangedSubview(emailLabel)
+        navigationBarStack.addArrangedSubview(logoutButton)
+        navigationBarStack.addArrangedSubview(pageTitle)
+        navigationBarStack.addArrangedSubview(addTaskButton)
+        mainStack.addArrangedSubview(navigationBarStack)
     }
     
     private func setUpConstraints() {
@@ -43,23 +45,46 @@ class HomeView: UIView {
     }()
 
     let mainStack: UIStackView = {
-        let stackView = UIStackView(frame: .infinite)
+        let stackView = UIStackView(frame: .zero)
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.spacing = 10
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.layoutMargins = UIEdgeInsets(top: 10, left: 30, bottom: 30, right: 30)
-
         return stackView
     }()
-    
-    let emailLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.systemFont(ofSize: 40)
-        label.textColor = .white
-        label.textAlignment = .left
-        label.text = "Testing home view"
 
+    let navigationBarStack: UIStackView = {
+        let stackView = UIStackView(frame: .zero)
+        stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
+        stackView.alignment = .center
+        stackView.spacing = 10
+        return stackView
+    }()
+
+    let logoutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Logout", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.setTitleColor(.white, for: .normal)
+        return button
+    }()
+    
+    let pageTitle: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.systemFont(ofSize: 18)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.text = "Home"
         return label
+    }()
+    
+    let addTaskButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Add", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
+        button.setTitleColor(.white, for: .normal)
+        return button
     }()
 }

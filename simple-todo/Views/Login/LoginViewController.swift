@@ -48,12 +48,12 @@ class LoginViewController: UIViewController {
         mainView.loginButton.rx.tap.do(onNext: { [unowned self] in
             self.mainView.emailTextField.resignFirstResponder()
             self.mainView.passwordTextField.resignFirstResponder()
+            self.mainView.loginButton.isEnabled = false
         }).subscribe(onNext: { [unowned self] in
+            self.mainView.loginButton.isEnabled = true
+
             if self.viewModel.isValidCredentials() {
                 self.viewModel.loginUser()
-                
-            } else {
-                print("wala ni sulod")
             }
         }).disposed(by: disposedBag)
     }
