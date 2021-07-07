@@ -32,12 +32,17 @@ class LoginViewModel {
         model.password = passwordvm.data.value
         
         isLoading.accept(true)
-    
+        
         rxSignIn(withEmail: model.email, password: model.password)
             .subscribe(
                 onNext: { response in
                     self.isLoading.accept(false)
                     self.isSuccess.accept(true)
+                    
+                    let loginVC = UIApplication.shared.keyWindow?.rootViewController
+                    let homeVC = UINavigationController(rootViewController: HomeViewController())
+                    
+                    self.redirectTo(homeVC, loginVC!)
                 },onError: { error in
                     self.isLoading.accept(false)
                     self.errorMessage.accept(error.localizedDescription)
@@ -59,6 +64,15 @@ class LoginViewModel {
             return Disposables.create()
         }
     }
+    
+    func redirectTo(_ destination: UIViewController, _ sender: UIViewController) {
+        DispatchQueue.main.async { [weak self] in
+            if self!.isSuccess.value {
+                destination.modalPresentationStyle = .overFullScreen
+                sender.present(destination, animated: true, completion: nil)
+            }
+        }
+    }
 }
 
 struct PasswordViewModel: ValidateCredentials {
@@ -67,9 +81,9 @@ struct PasswordViewModel: ValidateCredentials {
     var errorValue: BehaviorRelay<String?> = BehaviorRelay(value: "")
     
     func validateCredentials() -> Bool {
-        guard validateLength(text: data.value, size: (6, 15)) else {
+        guard validateLength(text: data.value, size: (5, 100)) else {
             errorValue.accept(errorMessage)
-    
+
             return false
         }
     
@@ -78,7 +92,7 @@ struct PasswordViewModel: ValidateCredentials {
         return true
     }
 
-    func validateLength(text : String, size : (min : Int, max : Int)) -> Bool{
+    func validateLength(text : String, size : (min : Int, max : Int)) -> Bool {
         return (size.min...size.max).contains(text.count)
     }
 }
@@ -91,7 +105,7 @@ struct EmailViewModel: ValidateCredentials {
     func validateCredentials() -> Bool {
         guard validatePattern(text: data.value) else {
             errorValue.accept(errorMessage)
-    
+ 
             return false
         }
         
@@ -102,8 +116,8 @@ struct EmailViewModel: ValidateCredentials {
 
     func validatePattern(text : String) -> Bool{
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
         let emailInput = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+
         return emailInput.evaluate(with: text)
     }
 }
