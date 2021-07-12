@@ -18,9 +18,13 @@
 		24B3BE552693F3AE0007ABFF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE542693F3AE0007ABFF /* LoginViewModel.swift */; };
 		24B3BE5B2693F8A00007ABFF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE5A2693F8A00007ABFF /* LoginModel.swift */; };
 		24B3BE67269451DF0007ABFF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE66269451DF0007ABFF /* LoginView.swift */; };
-		24B3BE6A269452D00007ABFF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE69269452D00007ABFF /* UIView.swift */; };
 		24B3BE6D26945B780007ABFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE6C26945B780007ABFF /* HomeViewController.swift */; };
 		24B3BE6F269548850007ABFF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE6E269548850007ABFF /* HomeView.swift */; };
+		24B3BE7A269C172C0007ABFF /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE79269C172C0007ABFF /* UITextField+Extension.swift */; };
+		24B3BE7C269C1C830007ABFF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE7B269C1C830007ABFF /* UIColor+Extension.swift */; };
+		24B3BE7E269C1D580007ABFF /* UIButtton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE7D269C1D580007ABFF /* UIButtton+Extension.swift */; };
+		24B3BE80269C1DF70007ABFF /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE7F269C1DF70007ABFF /* UIStackView+Extension.swift */; };
+		24B3BE82269C2A230007ABFF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE81269C2A230007ABFF /* UIView+Extension.swift */; };
 		61F890288CD0751B76E81367 /* Pods_simple_todoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C592B740D1C2A67333D8A2 /* Pods_simple_todoTests.framework */; };
 		7E88D98258325F6B8541D4A2 /* Pods_simple_todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDA7CB4E88B53FE000BF126 /* Pods_simple_todo.framework */; };
 		CAB28EAD5CA91BB6682731AE /* Pods_simple_todo_simple_todoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7512E7D48C223B0F8505B474 /* Pods_simple_todo_simple_todoUITests.framework */; };
@@ -61,9 +65,13 @@
 		24B3BE542693F3AE0007ABFF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		24B3BE5A2693F8A00007ABFF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		24B3BE66269451DF0007ABFF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		24B3BE69269452D00007ABFF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		24B3BE6C26945B780007ABFF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24B3BE6E269548850007ABFF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		24B3BE79269C172C0007ABFF /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE7B269C1C830007ABFF /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE7D269C1D580007ABFF /* UIButtton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButtton+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE7F269C1DF70007ABFF /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE81269C2A230007ABFF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		27576A6DAFE5B680E1FFE003 /* Pods-simple-todo-simple-todoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-todo-simple-todoUITests.release.xcconfig"; path = "Target Support Files/Pods-simple-todo-simple-todoUITests/Pods-simple-todo-simple-todoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		418785AE63271B6FDB7552AA /* Pods-simple-todoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-todoTests.debug.xcconfig"; path = "Target Support Files/Pods-simple-todoTests/Pods-simple-todoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6EDA7CB4E88B53FE000BF126 /* Pods_simple_todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simple_todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,7 +205,11 @@
 		24B3BE68269452B80007ABFF /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				24B3BE69269452D00007ABFF /* UIView.swift */,
+				24B3BE79269C172C0007ABFF /* UITextField+Extension.swift */,
+				24B3BE7B269C1C830007ABFF /* UIColor+Extension.swift */,
+				24B3BE7D269C1D580007ABFF /* UIButtton+Extension.swift */,
+				24B3BE7F269C1DF70007ABFF /* UIStackView+Extension.swift */,
+				24B3BE81269C2A230007ABFF /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -475,11 +487,15 @@
 				24B3BE6F269548850007ABFF /* HomeView.swift in Sources */,
 				24B3BE4E2693EEF00007ABFF /* LoginViewController.swift in Sources */,
 				24B3BE5B2693F8A00007ABFF /* LoginModel.swift in Sources */,
+				24B3BE7C269C1C830007ABFF /* UIColor+Extension.swift in Sources */,
 				24B3BE552693F3AE0007ABFF /* LoginViewModel.swift in Sources */,
 				24B3BE6D26945B780007ABFF /* HomeViewController.swift in Sources */,
+				24B3BE7A269C172C0007ABFF /* UITextField+Extension.swift in Sources */,
 				24B3BE19268ECC8C0007ABFF /* AppDelegate.swift in Sources */,
+				24B3BE82269C2A230007ABFF /* UIView+Extension.swift in Sources */,
 				24B3BE67269451DF0007ABFF /* LoginView.swift in Sources */,
-				24B3BE6A269452D00007ABFF /* UIView.swift in Sources */,
+				24B3BE80269C1DF70007ABFF /* UIStackView+Extension.swift in Sources */,
+				24B3BE7E269C1D580007ABFF /* UIButtton+Extension.swift in Sources */,
 				24B3BE1B268ECC8C0007ABFF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

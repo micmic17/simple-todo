@@ -23,6 +23,12 @@ class HomeView: UIView {
         setUpConstraints()
     }
     
+    private func setUpConstraints() {
+        backgroundView.pinEdges(to: self)
+        mainStack.pinEdgesToSafeArea(of: self)
+    }
+    
+    
     private func setUpViews() {
         self.addSubview(backgroundView)
         self.addSubview(mainStack)
@@ -31,12 +37,7 @@ class HomeView: UIView {
         navigationBarStack.addArrangedSubview(addTaskButton)
         mainStack.addArrangedSubview(navigationBarStack)
     }
-    
-    private func setUpConstraints() {
-        backgroundView.pinEdges(to: self)
-        mainStack.pinEdgesToSafeArea(of: self)
-    }
-    
+
     // MARK: - Views
     let backgroundView: UIView = {
         let view = UIView(frame: .zero)

@@ -28,27 +28,30 @@ class LoginViewModel {
         return emailvm.validateCredentials() && passwordvm.validateCredentials()
     }
     
-    func loginUser() {
+    func loginUser(_ origin: UIViewController) {
         model.email = emailvm.data.value
         model.password = passwordvm.data.value
         
         isLoading.accept(true)
         
-        rxSignIn(withEmail: model.email, password: model.password)
-            .subscribe(
-                onNext: { response in
-                    self.isLoading.accept(false)
-                    self.isSuccess.accept(true)
-                    self.isAuthenticated.accept(true)
-                    self.redirectTo(HomeViewController(), (UIApplication.shared.keyWindow?.rootViewController)!)
-                },onError: { error in
-                    self.isLoading.accept(false)
-                    self.errorMessage.accept(error.localizedDescription)
-                }
-            ).disposed(by: disposeBag)
+        
+        auth.signIn(withEmail: model.email, password: model.password) { [weak self] authResult, error in
+            if error != nil {
+                self?.errorMessage.accept(error!.localizedDescription)
+                self!.isLoading.accept(false)
+            } else {
+                let destination = HomeViewController()
+                
+                self!.isLoading.accept(false)
+                self!.isSuccess.accept(true)
+
+                destination.modalPresentationStyle = .overFullScreen
+                origin.present(destination, animated: true, completion: nil)
+            }
+        }
     }
     
-    func logoutUser() {
+    func logoutUser(_ origin: UIViewController) {
         model.email = ""
         model.password = ""
         
@@ -61,41 +64,12 @@ class LoginViewModel {
                 self.isLoading.accept(false)
                 self.isSuccess.accept(true)
                 self.isAuthenticated.accept(false)
-                let root = (UIApplication.shared.keyWindow?.rootViewController)!
-
-                DispatchQueue.main.async { [weak self] in
-                    if self!.isSuccess.value {
-                        root.dismiss(animated: true, completion: nil)
-                    }
-                }
+                
+                origin.dismiss(animated: true, completion: nil)
             }
         } catch let signOutError as NSError {
             self.isLoading.accept(false)
             self.errorMessage.accept(signOutError.localizedDescription)
-        }
-    }
-    
-    // Create observer so can disposed firebase auth result
-    func rxSignIn(withEmail email: String, password: String) -> Observable<AuthDataResult> {
-        return Observable.create { observer in
-            self.auth.signIn(withEmail: email, password: password) { auth, error in
-                if let error = error {
-                    observer.onError(error)
-                } else if let auth = auth {
-                    observer.onNext(auth)
-                    observer.onCompleted()
-                }
-            }
-            return Disposables.create()
-        }
-    }
-    
-    func redirectTo(_ destination: UIViewController, _ sender: UIViewController) {
-        DispatchQueue.main.async { [weak self] in
-            if self!.isSuccess.value {
-                destination.modalPresentationStyle = .overFullScreen
-                sender.present(destination, animated: true, completion: nil)
-            }
         }
     }
 }

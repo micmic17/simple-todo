@@ -8,6 +8,8 @@
 import UIKit
 
 class LoginView: UIView {
+    var signUpAction: (() -> Void)?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -19,105 +21,59 @@ class LoginView: UIView {
     }
     
     func setup() {
-        setUpViews()
-        setUpConstraints()
-    }
-    
-    private func setUpViews() {
-        self.addSubview(backgroundView)
-        self.addSubview(mainStack)
+        let stackView = createStackView(views: [emailTextField, passwordTextField, loginButton, signUpButton])
+        addSubview(backgroundImage)
+        addSubview(stackView)
+        backgroundImage.setAnchor(top: self.topAnchor,
+                                  left: self.leftAnchor,
+                                  bottom: self.bottomAnchor,
+                                  right: self.rightAnchor,
+                                  paddingTop: 0,
+                                  paddingLeft: 0,
+                                  paddingBottom: 0,
+                                  paddingRight: 0)
         
-        mainStack.addArrangedSubview(centerContentStack)
-        centerContentStack.addArrangedSubview(emailLabel)
-        centerContentStack.addArrangedSubview(emailTextField)
-        centerContentStack.addArrangedSubview(passwordLabel)
-        centerContentStack.addArrangedSubview(passwordTextField)
-        mainStack.addArrangedSubview(loginButton)
-    }
-    
-    private func setUpConstraints() {
-        backgroundView.pinEdges(to: self)
-        mainStack.pinEdgesToSafeArea(of: self)
+        stackView.setAnchor(width: self.frame.width - 60, height: 210)
+        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
     
     // MARK: - Views
-    let backgroundView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = .red
-        return view
-    }()
+    let backgroundImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "backgroundImage")
+        imageView.contentMode = .scaleAspectFill
 
-    let mainStack: UIStackView = {
-        let stackView = UIStackView(frame: .infinite)
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 10
-        stackView.isLayoutMarginsRelativeArrangement = true
-        stackView.layoutMargins = UIEdgeInsets(top: 10, left: 30, bottom: 30, right: 30)
-
-        return stackView
-    }()
-    
-    let emailLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.systemFont(ofSize: 40)
-        label.textColor = .white
-        label.textAlignment = .left
-        label.text = "Email"
-
-        return label
+        return imageView
     }()
     
     let emailTextField: UITextField = {
-        let textfield = UITextField(frame: CGRect(x: 10, y: 320, width: 300, height: 30))
-        textfield.placeholder = "Email"
-        textfield.defaultTextField(textfield)
-
+        let textfield = UITextField(placeHolder: "Email")
+        textfield.autocapitalizationType = .none
+        
         return textfield
     }()
     
-    let passwordLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.systemFont(ofSize: 40)
-        label.textColor = .white
-        label.textAlignment = .left
-        label.text = "Password"
-
-        return label
-    }()
-    
     let passwordTextField: UITextField = {
-        let textfield = UITextField(frame: CGRect(x: 10, y: 320, width: 300, height: 30))
-        textfield.placeholder = "Password"
+        let textfield = UITextField(placeHolder: "Password")
+        textfield.autocapitalizationType = .none
         textfield.isSecureTextEntry = true
-        textfield.defaultTextField(textfield)
-
+        
         return textfield
     }()
     
     let loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Login", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 80)
-        button.setTitleColor(.white, for: .normal)
+        let button = UIButton(title: "Login", borderColor: UIColor.greenBorderColor)
+        
         return button
     }()
     
-    let centerContentStack: UIStackView = {
-        let stackView = UIStackView(frame: .infinite)
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 10
-        stackView.alignment = .leading
-        return stackView
+    let signUpButton: UIButton = {
+        let button = UIButton(title: "Sign Up", borderColor: UIColor.redBorderColor)
+        button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
+        
+        return button
     }()
-}
 
-extension UITextField {
-    func defaultTextField(_ textfield: UITextField) {
-        textfield.autocapitalizationType = .none
-        textfield.autocorrectionType = .no
-        textfield.borderStyle = UITextField.BorderStyle.roundedRect
-        textfield.textColor = UIColor.black
-    }
+    @objc func handleSignup() { signUpAction?() }
 }

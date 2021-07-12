@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 class LoginViewController: UIViewController {
-    var mainView: LoginView! { return self.view as? LoginView }
+    var loginView: LoginView!
 
     let viewModel = LoginViewModel()
     let disposedBag = DisposeBag()
@@ -17,43 +17,54 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setUpView()
         createViewModelBinding()
         createCallbacks()
     }
-    
-    override func loadView() {
-        self.view = LoginView(frame: UIScreen.main.bounds)
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        let isLandscape = size.width > size.height
-        if isLandscape {
-            mainView.centerContentStack.axis = .horizontal
-        } else {
-            mainView.centerContentStack.axis = .vertical
-        }
+    func setUpView() {
+        let mainView = LoginView(frame: self.view.frame)
+        self.loginView = mainView
+        self.loginView.signUpAction = signUpPressed
+        self.view.addSubview(loginView)
+        loginView.setAnchor(top: view.topAnchor,
+                            left: view.leftAnchor,
+                            bottom: view.bottomAnchor,
+                            right: view.rightAnchor,
+                            paddingTop: 0,
+                            paddingLeft: 0,
+                            paddingBottom: 0,
+                            paddingRight: 0)
     }
+
+    func signUpPressed() { print("signup") }
+    
 
     // MARK: - Reactive functions
     func createViewModelBinding() {
-        mainView.emailTextField.rx.text.orEmpty
+        loginView.emailTextField.rx.text.orEmpty
             .bind(to: viewModel.emailvm.data)
             .disposed(by: disposedBag)
         
-        mainView.passwordTextField.rx.text.orEmpty
+        loginView.passwordTextField.rx.text.orEmpty
             .bind(to: viewModel.passwordvm.data)
             .disposed(by: disposedBag)
-        
-        mainView.loginButton.rx.tap.do(onNext: { [unowned self] in
-            self.mainView.emailTextField.resignFirstResponder()
-            self.mainView.passwordTextField.resignFirstResponder()
-            self.mainView.loginButton.isEnabled = false
-        }).subscribe(onNext: { [unowned self] in
-            self.mainView.loginButton.isEnabled = true
+    
+        loginView.loginButton.rx.tap.do(onNext: { [unowned self] in
+            self.loginView.emailTextField.resignFirstResponder()
+            self.loginView.passwordTextField.resignFirstResponder()
+            self.loginView.loginButton.isEnabled = false
+        })
+        .subscribe(onNext: { [unowned self] in
+            self.loginView.loginButton.isEnabled = true
 
             if self.viewModel.isValidCredentials() {
-                self.viewModel.loginUser()
+                self.viewModel.loginUser(self)
             }
         }).disposed(by: disposedBag)
     }

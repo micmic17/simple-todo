@@ -24,11 +24,12 @@ class HomeViewController: UIViewController {
         self.view = HomeView(frame: UIScreen.main.bounds)
     }
     
+
     func createViewModelBinding() {
         mainView.logoutButton.rx.tap.do(onNext: { [unowned self] in
             self.mainView.logoutButton.isEnabled = false
         }).subscribe(onNext: { [unowned self] in
-            self.viewModel.logoutUser()
+            self.viewModel.logoutUser(self)
             self.mainView.logoutButton.isEnabled = true
         }).disposed(by: disposedBag)
     }
