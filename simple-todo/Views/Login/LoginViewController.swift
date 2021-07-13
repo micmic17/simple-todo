@@ -40,9 +40,20 @@ class LoginViewController: UIViewController {
                             paddingLeft: 0,
                             paddingBottom: 0,
                             paddingRight: 0)
+        
+        loginView.emailLabel.isHidden = true
+        loginView.passwordLabel.isHidden = true
     }
 
-    func signUpPressed() { print("signup") }
+    func signUpPressed() {
+        loginView.emailLabel.isHidden = false
+        loginView.passwordLabel.isHidden = false
+        
+        loginView.emailTextField.layer.borderWidth = 1
+        loginView.passwordTextField.layer.borderWidth = 1
+        loginView.emailTextField.layer.borderColor = UIColor.redBorderColor.cgColor
+        loginView.passwordTextField.layer.borderColor = UIColor.redBorderColor.cgColor
+    }
     
 
     // MARK: - Reactive functions

@@ -8,11 +8,16 @@
 import UIKit
 
 extension UIView {
-    func createStackView(views: [UIView]) -> UIStackView {
+    func createStackView(
+        views: [UIView],
+        _ axis: NSLayoutConstraint.Axis,
+        _ distribution: UIStackView.Distribution,
+        _ spacing: CGFloat
+    ) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.spacing = 10
+        stackView.axis = axis
+        stackView.distribution = distribution
+        stackView.spacing = spacing
         
         return stackView
     }

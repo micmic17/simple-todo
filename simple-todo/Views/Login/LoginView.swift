@@ -21,7 +21,10 @@ class LoginView: UIView {
     }
     
     func setup() {
-        let stackView = createStackView(views: [emailTextField, passwordTextField, loginButton, signUpButton])
+        let emailStack = createStackView(views: [emailTextField, emailLabel], .vertical, .fillEqually , 5)
+        let passwordStack = createStackView(views: [passwordTextField, passwordLabel], .vertical, .fillEqually , 5)
+
+        let stackView = createStackView(views: [emailStack, passwordStack, loginButton, signUpButton], .vertical, .fillProportionally , 10)
         addSubview(backgroundImage)
         addSubview(stackView)
         backgroundImage.setAnchor(top: self.topAnchor,
@@ -33,7 +36,7 @@ class LoginView: UIView {
                                   paddingBottom: 0,
                                   paddingRight: 0)
         
-        stackView.setAnchor(width: self.frame.width - 60, height: 210)
+        stackView.setAnchor(width: self.frame.width - 60, height: stackView.frame.height)
         stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         stackView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
     }
@@ -52,6 +55,29 @@ class LoginView: UIView {
         textfield.autocapitalizationType = .none
         
         return textfield
+    }()
+    
+    let emailLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.font = UIFont.italicSystemFont(ofSize: 14)
+        label.text = "Email is wrong"
+        
+        label.textAlignment = .right
+        label.textColor = .red
+        
+        return label
+    }()
+    
+    let passwordLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
+        label.font = UIFont.italicSystemFont(ofSize: 14)
+        label.text = "Password is wrong"
+        label.textAlignment = .right
+        label.textColor = .red
+        
+        return label
     }()
     
     let passwordTextField: UITextField = {
