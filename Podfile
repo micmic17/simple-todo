@@ -7,8 +7,8 @@ target 'simple-todo' do
   # Pods for simple-todo
   pod 'Firebase/Auth'
   pod 'Firebase/Firestore'
-  pod 'RxSwift'
-  pod 'RxCocoa'
+  pod 'ReactiveSwift'
+  pod 'ReactiveCocoa'
 
   target 'simple-todoTests' do
     inherit! :search_paths

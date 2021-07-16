@@ -28,6 +28,8 @@ extension UITextField {
         self.attributedPlaceholder = placeholder
         self.setAnchor(width: 0, height: 40)
         self.setLeftPaddingPoints(20)
+        self.textContentType = .oneTimeCode
+        
     }
     
     func setLeftPaddingPoints(_ spacing: CGFloat) {

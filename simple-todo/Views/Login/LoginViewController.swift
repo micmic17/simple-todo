@@ -6,31 +6,25 @@
 //
 
 import UIKit
-import RxSwift
+import ReactiveSwift
+import ReactiveCocoa
 
 class LoginViewController: UIViewController {
     var loginView: LoginView!
 
-    let viewModel = LoginViewModel()
-    let disposedBag = DisposeBag()
+    let viewModel = LoginViewModel(usingService: LoginService())
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUpView()
-        createViewModelBinding()
-        createCallbacks()
+        addTargets()
+        alertMessage()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
-    }
-    
     func setUpView() {
         let mainView = LoginView(frame: self.view.frame)
         self.loginView = mainView
-        self.loginView.signUpAction = signUpPressed
         self.view.addSubview(loginView)
         loginView.setAnchor(top: view.topAnchor,
                             left: view.leftAnchor,
@@ -43,9 +37,49 @@ class LoginViewController: UIViewController {
         
         loginView.emailLabel.isHidden = true
         loginView.passwordLabel.isHidden = true
+
+        self.viewModel.outputs.loginButtonEnabled
+                .observe(on: UIScheduler())
+                .observeValues { [weak self] enabled in
+                    self?.loginView.loginButton.isEnabled = enabled
+                }
+        self.viewModel.rootVC = self
+        self.viewModel.inputs.viewDidLoad()
+    }
+    
+    func alertMessage() {
+        self.viewModel.outputs.alertMessage
+            .observe(on: UIScheduler())
+            .observeValues { [weak self] message in
+                let alert = UIAlertController(title: nil,
+                                              message: message,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OKAY", style: .default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+            }
+    }
+}
+
+extension LoginViewController {
+    func addTargets() {
+        loginView.emailTextField.addTarget(self, action: #selector(emailChanged), for: .editingChanged)
+        loginView.passwordTextField.addTarget(self, action: #selector(passwordChanged), for: .editingChanged)
+        loginView.loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
+        loginView.signUpButton.addTarget(self, action: #selector(signUpPressed), for: .touchUpInside)
+    }
+    
+    @objc func emailChanged() {
+        self.viewModel.inputs.emailChanged(email: loginView.emailTextField.text)
     }
 
-    func signUpPressed() {
+    @objc func passwordChanged() {
+        self.viewModel.inputs.passwordChanged(password: loginView.passwordTextField.text)
+    }
+    @objc func loginButtonPressed() {
+        self.viewModel.inputs.loginButtonPressed()
+    }
+
+    @objc func signUpPressed() {
         loginView.emailLabel.isHidden = false
         loginView.passwordLabel.isHidden = false
         
@@ -53,42 +87,5 @@ class LoginViewController: UIViewController {
         loginView.passwordTextField.layer.borderWidth = 1
         loginView.emailTextField.layer.borderColor = UIColor.redBorderColor.cgColor
         loginView.passwordTextField.layer.borderColor = UIColor.redBorderColor.cgColor
-    }
-    
-
-    // MARK: - Reactive functions
-    func createViewModelBinding() {
-        loginView.emailTextField.rx.text.orEmpty
-            .bind(to: viewModel.emailvm.data)
-            .disposed(by: disposedBag)
-        
-        loginView.passwordTextField.rx.text.orEmpty
-            .bind(to: viewModel.passwordvm.data)
-            .disposed(by: disposedBag)
-    
-        loginView.loginButton.rx.tap.do(onNext: { [unowned self] in
-            self.loginView.emailTextField.resignFirstResponder()
-            self.loginView.passwordTextField.resignFirstResponder()
-            self.loginView.loginButton.isEnabled = false
-        })
-        .subscribe(onNext: { [unowned self] in
-            self.loginView.loginButton.isEnabled = true
-
-            if self.viewModel.isValidCredentials() {
-                self.viewModel.loginUser(self)
-            }
-        }).disposed(by: disposedBag)
-    }
-    
-    func createCallbacks() {
-        viewModel.isSuccess.asObservable()
-            .bind{ value in
-                NSLog("Successfull")
-            }.disposed(by: disposedBag)
-
-        viewModel.errorMessage.asObservable()
-            .bind { errorMessage in
-                NSLog("Failure")
-            }.disposed(by: disposedBag)
     }
 }

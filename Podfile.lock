@@ -303,18 +303,15 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
-  - RxCocoa (6.2.0):
-    - RxRelay (= 6.2.0)
-    - RxSwift (= 6.2.0)
-  - RxRelay (6.2.0):
-    - RxSwift (= 6.2.0)
-  - RxSwift (6.2.0)
+  - ReactiveCocoa (11.2.1):
+    - ReactiveSwift (~> 6.6)
+  - ReactiveSwift (6.6.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
-  - RxCocoa
-  - RxSwift
+  - ReactiveCocoa
+  - ReactiveSwift
 
 SPEC REPOS:
   trunk:
@@ -333,9 +330,8 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
-    - RxCocoa
-    - RxRelay
-    - RxSwift
+    - ReactiveCocoa
+    - ReactiveSwift
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -353,10 +349,9 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
-  RxCocoa: 4baf94bb35f2c0ab31bc0cb9f1900155f646ba42
-  RxRelay: e72dbfd157807478401ef1982e1c61c945c94b2f
-  RxSwift: d356ab7bee873611322f134c5f9ef379fa183d8f
+  ReactiveCocoa: 194289e7069037d40c59cb4ae9230f4b1ec05fa8
+  ReactiveSwift: fab34244ad908808dc822bae352a058c8837c4ca
 
-PODFILE CHECKSUM: 68f75f88f71580d0e9fc43fb77f2728b7235732d
+PODFILE CHECKSUM: 02d03f24cd89b1794d813f5839109938343863e5
 
 COCOAPODS: 1.10.1

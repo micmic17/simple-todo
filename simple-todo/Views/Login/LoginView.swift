@@ -8,7 +8,6 @@
 import UIKit
 
 class LoginView: UIView {
-    var signUpAction: (() -> Void)?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -96,10 +95,7 @@ class LoginView: UIView {
     
     let signUpButton: UIButton = {
         let button = UIButton(title: "Sign Up", borderColor: UIColor.redBorderColor)
-        button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
         
         return button
     }()
-
-    @objc func handleSignup() { signUpAction?() }
 }

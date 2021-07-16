@@ -6,126 +6,106 @@
 //
 
 import Foundation
-import RxSwift
-import RxCocoa
-import Firebase
+import ReactiveSwift
 
-class LoginViewModel {
-    let model = LoginModel()
-    let disposeBag = DisposeBag()
-    let auth = Auth.auth()
-
-    // Initialize view models
-    let emailvm = EmailViewModel()
-    let passwordvm = PasswordViewModel()
-
-    var isSuccess = BehaviorRelay<Bool>(value: false)
-    var isLoading = BehaviorRelay<Bool>(value: false)
-    var isAuthenticated = BehaviorRelay<Bool>(value: false)
-    var errorMessage = BehaviorRelay<String>(value: "")
+class LoginViewModel: LoginViewModelInputs, LoginViewModelOutputs, LoginViewModelType {
+    let service: LoginAPIService
+    var rootVC = UIViewController()
+    var alertMessage: Signal<String, Never>
+    let loginButtonEnabled: Signal<Bool, Never>
     
-    func isValidCredentials() -> Bool {
-        return emailvm.validateCredentials() && passwordvm.validateCredentials()
+    init(usingService: LoginAPIService) {
+        let formData = Signal.combineLatest(self.emailChangedProperty.signal, self.passwordChangedProperty.signal)
+        
+        let successfulLoginMessage = formData
+            .sample(on: self.loginButtonPressedProperty.signal)
+            .filter(isValidForm(email:password:))
+            .map { _ in "Login Successfully" }
+        
+        let submittedInvalidFormData = formData
+            .sample(on: self.loginButtonPressedProperty.signal)
+            .filter {
+                !isValidForm(email: $0, password: $1)
+            }
+        
+        let unsuccessfulyLoginMessage = submittedInvalidFormData
+            .take(first: 2)
+            .map { _ in "Login Uncessfully" }
+        
+        self.alertMessage = Signal.merge(successfulLoginMessage, unsuccessfulyLoginMessage)
+        self.loginButtonEnabled = Signal.merge(
+            self.viewDidLoadProperty.signal.map { _ in false },
+            formData.map(isNotNil(email:password:))
+        )
+        
+        self.service = usingService
     }
     
-    func loginUser(_ origin: UIViewController) {
-        model.email = emailvm.data.value
-        model.password = passwordvm.data.value
+    var inputs: LoginViewModelInputs { return self }
+    var outputs: LoginViewModelOutputs { return self }
+    
+    let emailChangedProperty = MutableProperty<String?>(nil)
+    func emailChanged(email: String?) {
+        self.emailChangedProperty.value = email
+    }
+    
+    let passwordChangedProperty = MutableProperty<String?>(nil)
+    func passwordChanged(password: String?) {
+        self.passwordChangedProperty.value = password
+    }
+    
+    let loginButtonPressedProperty = MutableProperty(())
+    func loginButtonPressed() {
+        self.loginButtonPressedProperty.value = ()
+    }
+    
+    let viewDidLoadProperty = MutableProperty(())
+    func viewDidLoad() {
+        self.viewDidLoadProperty.value = ()
+        self.observeAlert()
+    }
+    
+    func observeAlert() {
+        alertMessage.signal.observeValues { message in
+            if message == "Login Successfully" { self.loginUser() }
+        }
+    }
+    
+    func loginUser() {
+        guard let email = emailChangedProperty.value,
+              let password = passwordChangedProperty.value else { return }
         
-        isLoading.accept(true)
-        
-        
-        auth.signIn(withEmail: model.email, password: model.password) { [weak self] authResult, error in
-            if error != nil {
-                self?.errorMessage.accept(error!.localizedDescription)
-                self!.isLoading.accept(false)
-            } else {
-                let destination = HomeViewController()
+        service.loginUser(email: email, password: password) { response in
+            switch response {
+            case .success(let auth):
+                let homeVC = HomeViewController()
                 
-                self!.isLoading.accept(false)
-                self!.isSuccess.accept(true)
+                homeVC.modalPresentationStyle = .overFullScreen
+                self.rootVC.present(homeVC, animated: true, completion: nil)
+                
+                break
+            case .failure(let error):
+                print(error)
 
-                destination.modalPresentationStyle = .overFullScreen
-                origin.present(destination, animated: true, completion: nil)
+                break
             }
         }
     }
-    
-    func logoutUser(_ origin: UIViewController) {
-        model.email = ""
-        model.password = ""
-        
-        isLoading.accept(true)
-        
-        do {
-            try auth.signOut()
-            
-            DispatchQueue.main.async {
-                self.isLoading.accept(false)
-                self.isSuccess.accept(true)
-                self.isAuthenticated.accept(false)
-                
-                origin.dismiss(animated: true, completion: nil)
-            }
-        } catch let signOutError as NSError {
-            self.isLoading.accept(false)
-            self.errorMessage.accept(signOutError.localizedDescription)
-        }
-    }
 }
 
-struct PasswordViewModel: ValidateCredentials {
-    var errorMessage: String = "Password field should not be empty"
-    var data: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var errorValue: BehaviorRelay<String?> = BehaviorRelay(value: "")
-    
-    func validateCredentials() -> Bool {
-        guard validateLength(text: data.value, size: (5, 100)) else {
-            errorValue.accept(errorMessage)
-
-            return false
-        }
-    
-        errorValue.accept("")
-
-        return true
-    }
-
-    func validateLength(text : String, size : (min : Int, max : Int)) -> Bool {
-        return (size.min...size.max).contains(text.count)
-    }
+protocol LoginViewModelInputs {
+    func emailChanged(email: String?)
+    func passwordChanged(password: String?)
+    func loginButtonPressed()
+    func viewDidLoad()
 }
 
-struct EmailViewModel: ValidateCredentials {
-    var errorMessage: String = "Please enter a valid email"
-    var data: BehaviorRelay<String> = BehaviorRelay(value: "")
-    var errorValue: BehaviorRelay<String?> = BehaviorRelay(value: "")
-    
-    func validateCredentials() -> Bool {
-        guard validatePattern(text: data.value) else {
-            errorValue.accept(errorMessage)
- 
-            return false
-        }
-        
-        errorValue.accept("")
-
-        return true
-    }
-
-    func validatePattern(text : String) -> Bool{
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailInput = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-
-        return emailInput.evaluate(with: text)
-    }
+protocol LoginViewModelOutputs {
+    var alertMessage: Signal<String, Never> { get }
+    var loginButtonEnabled: Signal<Bool, Never> { get }
 }
 
-protocol ValidateCredentials {
-    var errorMessage: String { get }
-    
-    var data: BehaviorRelay<String> { get set }
-    var errorValue: BehaviorRelay<String?> { get }
-    
-    func validateCredentials() -> Bool
+protocol LoginViewModelType {
+    var inputs: LoginViewModelInputs { get }
+    var outputs: LoginViewModelOutputs { get }
 }
