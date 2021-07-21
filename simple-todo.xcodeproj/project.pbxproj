@@ -3,19 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		24B3BE19268ECC8C0007ABFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE18268ECC8C0007ABFF /* AppDelegate.swift */; };
 		24B3BE1B268ECC8C0007ABFF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE1A268ECC8C0007ABFF /* SceneDelegate.swift */; };
-		24B3BE1D268ECC8C0007ABFF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE1C268ECC8C0007ABFF /* ViewController.swift */; };
-		24B3BE20268ECC8C0007ABFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B3BE1E268ECC8C0007ABFF /* Main.storyboard */; };
 		24B3BE22268ECC8D0007ABFF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24B3BE21268ECC8D0007ABFF /* Assets.xcassets */; };
 		24B3BE25268ECC8D0007ABFF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24B3BE23268ECC8D0007ABFF /* LaunchScreen.storyboard */; };
 		24B3BE30268ECC8E0007ABFF /* simple_todoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE2F268ECC8E0007ABFF /* simple_todoTests.swift */; };
 		24B3BE3B268ECC8E0007ABFF /* simple_todoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE3A268ECC8E0007ABFF /* simple_todoUITests.swift */; };
 		24B3BE49268ECE030007ABFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24B3BE48268ECE030007ABFF /* GoogleService-Info.plist */; };
+		24B3BE4E2693EEF00007ABFF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE4D2693EEF00007ABFF /* LoginViewController.swift */; };
+		24B3BE552693F3AE0007ABFF /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE542693F3AE0007ABFF /* LoginViewModel.swift */; };
+		24B3BE5B2693F8A00007ABFF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE5A2693F8A00007ABFF /* LoginModel.swift */; };
+		24B3BE67269451DF0007ABFF /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE66269451DF0007ABFF /* LoginView.swift */; };
+		24B3BE6D26945B780007ABFF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE6C26945B780007ABFF /* HomeViewController.swift */; };
+		24B3BE6F269548850007ABFF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE6E269548850007ABFF /* HomeView.swift */; };
+		24B3BE7A269C172C0007ABFF /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE79269C172C0007ABFF /* UITextField+Extension.swift */; };
+		24B3BE7C269C1C830007ABFF /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE7B269C1C830007ABFF /* UIColor+Extension.swift */; };
+		24B3BE7E269C1D580007ABFF /* UIButtton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE7D269C1D580007ABFF /* UIButtton+Extension.swift */; };
+		24B3BE80269C1DF70007ABFF /* UIStackView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE7F269C1DF70007ABFF /* UIStackView+Extension.swift */; };
+		24B3BE82269C2A230007ABFF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE81269C2A230007ABFF /* UIView+Extension.swift */; };
+		24B3BE9826A12F6D0007ABFF /* LoginFormValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE9726A12F6D0007ABFF /* LoginFormValidation.swift */; };
+		24B3BE9A26A130900007ABFF /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE9926A130900007ABFF /* String+Extension.swift */; };
+		24B3BE9C26A134D20007ABFF /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3BE9B26A134D20007ABFF /* LoginService.swift */; };
 		61F890288CD0751B76E81367 /* Pods_simple_todoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C592B740D1C2A67333D8A2 /* Pods_simple_todoTests.framework */; };
 		7E88D98258325F6B8541D4A2 /* Pods_simple_todo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EDA7CB4E88B53FE000BF126 /* Pods_simple_todo.framework */; };
 		CAB28EAD5CA91BB6682731AE /* Pods_simple_todo_simple_todoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7512E7D48C223B0F8505B474 /* Pods_simple_todo_simple_todoUITests.framework */; };
@@ -42,8 +54,6 @@
 		24B3BE15268ECC8C0007ABFF /* simple-todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		24B3BE18268ECC8C0007ABFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24B3BE1A268ECC8C0007ABFF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		24B3BE1C268ECC8C0007ABFF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		24B3BE1F268ECC8C0007ABFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24B3BE21268ECC8D0007ABFF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		24B3BE24268ECC8D0007ABFF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		24B3BE26268ECC8D0007ABFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +64,20 @@
 		24B3BE3A268ECC8E0007ABFF /* simple_todoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = simple_todoUITests.swift; sourceTree = "<group>"; };
 		24B3BE3C268ECC8E0007ABFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24B3BE48268ECE030007ABFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		24B3BE4D2693EEF00007ABFF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		24B3BE542693F3AE0007ABFF /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		24B3BE5A2693F8A00007ABFF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		24B3BE66269451DF0007ABFF /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		24B3BE6C26945B780007ABFF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		24B3BE6E269548850007ABFF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		24B3BE79269C172C0007ABFF /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE7B269C1C830007ABFF /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE7D269C1D580007ABFF /* UIButtton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButtton+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE7F269C1DF70007ABFF /* UIStackView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE81269C2A230007ABFF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE9726A12F6D0007ABFF /* LoginFormValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFormValidation.swift; sourceTree = "<group>"; };
+		24B3BE9926A130900007ABFF /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		24B3BE9B26A134D20007ABFF /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		27576A6DAFE5B680E1FFE003 /* Pods-simple-todo-simple-todoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-todo-simple-todoUITests.release.xcconfig"; path = "Target Support Files/Pods-simple-todo-simple-todoUITests/Pods-simple-todo-simple-todoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		418785AE63271B6FDB7552AA /* Pods-simple-todoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-simple-todoTests.debug.xcconfig"; path = "Target Support Files/Pods-simple-todoTests/Pods-simple-todoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6EDA7CB4E88B53FE000BF126 /* Pods_simple_todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_simple_todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,10 +142,13 @@
 		24B3BE17268ECC8C0007ABFF /* simple-todo */ = {
 			isa = PBXGroup;
 			children = (
+				24B3BE9426A12E400007ABFF /* Helpers */,
+				24B3BE68269452B80007ABFF /* Extensions */,
+				24B3BE512693F0740007ABFF /* ViewModels */,
+				24B3BE4C2693EEDB0007ABFF /* Models */,
+				24B3BE4B2693EED60007ABFF /* Views */,
 				24B3BE18268ECC8C0007ABFF /* AppDelegate.swift */,
 				24B3BE1A268ECC8C0007ABFF /* SceneDelegate.swift */,
-				24B3BE1C268ECC8C0007ABFF /* ViewController.swift */,
-				24B3BE1E268ECC8C0007ABFF /* Main.storyboard */,
 				24B3BE21268ECC8D0007ABFF /* Assets.xcassets */,
 				24B3BE23268ECC8D0007ABFF /* LaunchScreen.storyboard */,
 				24B3BE26268ECC8D0007ABFF /* Info.plist */,
@@ -148,6 +175,71 @@
 			path = "simple-todoUITests";
 			sourceTree = "<group>";
 		};
+		24B3BE4B2693EED60007ABFF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE6B26945B690007ABFF /* Home */,
+				24B3BE65269451CE0007ABFF /* Login */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		24B3BE4C2693EEDB0007ABFF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE5A2693F8A00007ABFF /* LoginModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		24B3BE512693F0740007ABFF /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE542693F3AE0007ABFF /* LoginViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		24B3BE65269451CE0007ABFF /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE4D2693EEF00007ABFF /* LoginViewController.swift */,
+				24B3BE66269451DF0007ABFF /* LoginView.swift */,
+				24B3BE9B26A134D20007ABFF /* LoginService.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		24B3BE68269452B80007ABFF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE79269C172C0007ABFF /* UITextField+Extension.swift */,
+				24B3BE7B269C1C830007ABFF /* UIColor+Extension.swift */,
+				24B3BE7D269C1D580007ABFF /* UIButtton+Extension.swift */,
+				24B3BE7F269C1DF70007ABFF /* UIStackView+Extension.swift */,
+				24B3BE81269C2A230007ABFF /* UIView+Extension.swift */,
+				24B3BE9926A130900007ABFF /* String+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		24B3BE6B26945B690007ABFF /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE6C26945B780007ABFF /* HomeViewController.swift */,
+				24B3BE6E269548850007ABFF /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		24B3BE9426A12E400007ABFF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				24B3BE9726A12F6D0007ABFF /* LoginFormValidation.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		9CD1ADE2618621EBC66A81AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +260,6 @@
 				418785AE63271B6FDB7552AA /* Pods-simple-todoTests.debug.xcconfig */,
 				D07951332519E1E49A4B03A8 /* Pods-simple-todoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -283,7 +374,6 @@
 				24B3BE25268ECC8D0007ABFF /* LaunchScreen.storyboard in Resources */,
 				24B3BE49268ECE030007ABFF /* GoogleService-Info.plist in Resources */,
 				24B3BE22268ECC8D0007ABFF /* Assets.xcassets in Resources */,
-				24B3BE20268ECC8C0007ABFF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,8 +501,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24B3BE1D268ECC8C0007ABFF /* ViewController.swift in Sources */,
+				24B3BE9826A12F6D0007ABFF /* LoginFormValidation.swift in Sources */,
+				24B3BE6F269548850007ABFF /* HomeView.swift in Sources */,
+				24B3BE4E2693EEF00007ABFF /* LoginViewController.swift in Sources */,
+				24B3BE5B2693F8A00007ABFF /* LoginModel.swift in Sources */,
+				24B3BE7C269C1C830007ABFF /* UIColor+Extension.swift in Sources */,
+				24B3BE552693F3AE0007ABFF /* LoginViewModel.swift in Sources */,
+				24B3BE6D26945B780007ABFF /* HomeViewController.swift in Sources */,
+				24B3BE9C26A134D20007ABFF /* LoginService.swift in Sources */,
+				24B3BE7A269C172C0007ABFF /* UITextField+Extension.swift in Sources */,
 				24B3BE19268ECC8C0007ABFF /* AppDelegate.swift in Sources */,
+				24B3BE82269C2A230007ABFF /* UIView+Extension.swift in Sources */,
+				24B3BE67269451DF0007ABFF /* LoginView.swift in Sources */,
+				24B3BE80269C1DF70007ABFF /* UIStackView+Extension.swift in Sources */,
+				24B3BE7E269C1D580007ABFF /* UIButtton+Extension.swift in Sources */,
+				24B3BE9A26A130900007ABFF /* String+Extension.swift in Sources */,
 				24B3BE1B268ECC8C0007ABFF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,14 +552,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		24B3BE1E268ECC8C0007ABFF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				24B3BE1F268ECC8C0007ABFF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		24B3BE23268ECC8D0007ABFF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -303,10 +303,15 @@ PODS:
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
   - PromisesObjC (1.2.12)
+  - ReactiveCocoa (11.2.1):
+    - ReactiveSwift (~> 6.6)
+  - ReactiveSwift (6.6.1)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
+  - ReactiveCocoa
+  - ReactiveSwift
 
 SPEC REPOS:
   trunk:
@@ -325,6 +330,8 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - ReactiveCocoa
+    - ReactiveSwift
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -342,7 +349,9 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  ReactiveCocoa: 194289e7069037d40c59cb4ae9230f4b1ec05fa8
+  ReactiveSwift: fab34244ad908808dc822bae352a058c8837c4ca
 
-PODFILE CHECKSUM: 26fe28ec15b37398abc0f88ae3c54616f352e439
+PODFILE CHECKSUM: 02d03f24cd89b1794d813f5839109938343863e5
 
 COCOAPODS: 1.10.1
