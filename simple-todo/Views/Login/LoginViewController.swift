@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
                             paddingLeft: 0,
                             paddingBottom: 0,
                             paddingRight: 0)
-        
+
         loginView.emailLabel.isHidden = true
         loginView.passwordLabel.isHidden = true
 
@@ -80,12 +80,9 @@ extension LoginViewController {
     }
 
     @objc func signUpPressed() {
-        loginView.emailLabel.isHidden = false
-        loginView.passwordLabel.isHidden = false
-        
-        loginView.emailTextField.layer.borderWidth = 1
-        loginView.passwordTextField.layer.borderWidth = 1
-        loginView.emailTextField.layer.borderColor = UIColor.redBorderColor.cgColor
-        loginView.passwordTextField.layer.borderColor = UIColor.redBorderColor.cgColor
+        let signUpVC = SignUpViewController()
+        signUpVC.modalPresentationStyle = .overFullScreen
+        signUpVC.modalTransitionStyle = .crossDissolve
+        present(signUpVC, animated: true, completion: nil)
     }
 }

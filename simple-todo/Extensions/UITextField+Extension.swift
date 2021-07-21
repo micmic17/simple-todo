@@ -8,7 +8,7 @@
 import UIKit
 
 extension UITextField {
-    public convenience init(placeHolder: String) {
+    public convenience init(placeHolder: String, isPassword: Bool = false) {
         self.init()
         self.borderStyle = .none
         self.layer.cornerRadius = 5
@@ -27,14 +27,25 @@ extension UITextField {
         
         self.attributedPlaceholder = placeholder
         self.setAnchor(width: 0, height: 40)
-        self.setLeftPaddingPoints(20)
-        self.textContentType = .oneTimeCode
+        self.setLeftPaddingPoints(10)
+        self.setRightPaddingPoints(10)
         
+        if isPassword {
+            self.autocapitalizationType = .none
+            self.isSecureTextEntry = true
+            self.textContentType = .oneTimeCode
+        }
     }
     
     func setLeftPaddingPoints(_ spacing: CGFloat) {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: spacing, height: self.frame.size.height))
         self.leftView = paddingView
         self.leftViewMode = .always
+    }
+    
+    func setRightPaddingPoints(_ spacing: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: spacing, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
     }
 }

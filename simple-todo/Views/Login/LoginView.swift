@@ -57,32 +57,19 @@ class LoginView: UIView {
     }()
     
     let emailLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.font = UIFont.italicSystemFont(ofSize: 14)
-        label.text = "Email is wrong"
-        
-        label.textAlignment = .right
-        label.textColor = .red
+        let label = UILabel(title: "Email should not be empty")
         
         return label
     }()
     
     let passwordLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .light)
-        label.font = UIFont.italicSystemFont(ofSize: 14)
-        label.text = "Password is wrong"
-        label.textAlignment = .right
-        label.textColor = .red
+        let label = UILabel(title: "Password should not be empty")
         
         return label
     }()
     
     let passwordTextField: UITextField = {
-        let textfield = UITextField(placeHolder: "Password")
-        textfield.autocapitalizationType = .none
-        textfield.isSecureTextEntry = true
+        let textfield = UITextField(placeHolder: "Password", isPassword: true)
         
         return textfield
     }()
