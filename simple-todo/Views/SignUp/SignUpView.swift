@@ -8,8 +8,6 @@
 import UIKit
 
 class SignUpView: UIView {
-    var submitAction: (() -> Void)?
-    var cancelAction: (() -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,14 +48,14 @@ class SignUpView: UIView {
         let passwordStack = createStackView(views: [passwordTextField, passwordLabel], .vertical, .fillEqually , 5)
         let firstMiddleStackView = createStackView(views: [firstNameStack, middleNameTextField], .horizontal, .fillEqually, 10)
         let lastSuffixStackView = createStackView(views: [lastNameStack, suffixTextField], .horizontal, .fillProportionally, 10)
-        let ageMobileStackView = createStackView(views: [ageStack, mobileStack], .horizontal, .fillProportionally, 10)
+        let ageMobileGenderStackView = createStackView(views: [ageStack, genderTextField, mobileStack], .horizontal, .fill, 10)
         let buttonStackView = createStackView(views: [submitButton, cancelButton], .horizontal, .fillProportionally, 10)
     
         let mainStackView = createStackView(
             views: [pageTitle,
                     firstMiddleStackView,
                     lastSuffixStackView,
-                    ageMobileStackView,
+                    ageMobileGenderStackView,
                     addressTextField,
                     emailStack,
                     passwordStack,
@@ -135,6 +133,12 @@ class SignUpView: UIView {
         
         return label
     }()
+    
+    let genderTextField: UITextField = {
+        let textfield = UITextField(placeHolder: "Gender")
+        
+        return textfield
+    }()
 
     let mobileTextField: UITextField = {
         let textfield = UITextField(placeHolder: "Mobile Number")
@@ -181,18 +185,13 @@ class SignUpView: UIView {
     
     let submitButton: UIButton = {
         let button = UIButton(title: "Register", borderColor: .greenBorderColor)
-        button.addTarget(self, action: #selector(handleSubmit), for: .touchUpInside)
         
         return button
     }()
     
     let cancelButton: UIButton = {
         let button = UIButton(title: "Cancel", borderColor: .redBorderColor)
-        button.addTarget(self, action: #selector(handleCancel), for: .touchUpInside)
         
         return button
     }()
-    
-    @objc func handleSubmit() { submitAction?() }
-    @objc func handleCancel() { cancelAction?() }
 }

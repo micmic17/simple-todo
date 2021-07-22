@@ -19,13 +19,13 @@ class LoginViewModel: LoginViewModelInputs, LoginViewModelOutputs, LoginViewMode
         
         let successfulLoginMessage = formData
             .sample(on: self.loginButtonPressedProperty.signal)
-            .filter(isValidForm(email:password:))
+            .filter(isLoginFormValid(email:password:))
             .map { _ in "Login Successfully" }
         
         let submittedInvalidFormData = formData
             .sample(on: self.loginButtonPressedProperty.signal)
             .filter {
-                !isValidForm(email: $0, password: $1)
+                !isLoginFormValid(email: $0, password: $1)
             }
         
         let unsuccessfulyLoginMessage = submittedInvalidFormData
@@ -35,7 +35,7 @@ class LoginViewModel: LoginViewModelInputs, LoginViewModelOutputs, LoginViewMode
         self.alertMessage = Signal.merge(successfulLoginMessage, unsuccessfulyLoginMessage)
         self.loginButtonEnabled = Signal.merge(
             self.viewDidLoadProperty.signal.map { _ in false },
-            formData.map(isNotNil(email:password:))
+            formData.map(isLoginFormNotNil(email:password:))
         )
         
         self.service = usingService
